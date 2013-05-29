@@ -12,7 +12,10 @@ import menus.views.components.DialogBackgroundView as DialogBackgroundView;
 
 exports = Class(DialogBackgroundView, function (supr) {
 	this.init = function (opts) {
-		var width = opts.width || GC.app.baseWidth - 80;
+		this.baseWidth = opts.baseWidth || GC.app.baseWidth;
+		this.baseHeight = opts.baseHeight || GC.app.baseHeight;
+
+		var width = opts.width || this.baseWidth - 80;
 
 		supr(this, 'init', arguments);
 
@@ -33,8 +36,8 @@ exports = Class(DialogBackgroundView, function (supr) {
 
 		this._dialogView = new BoxDialogView({
 			superview: this._dialogContainerView,
-			x: (GC.app.baseWidth - width) * 0.5,
-			y: GC.app.baseHeight * 0.5 - height * 0.5,
+			x: (this.baseWidth - width) * 0.5,
+			y: this.baseHeight * 0.5 - height * 0.5,
 			width: width,
 			height: height,
 			title: opts.title,
