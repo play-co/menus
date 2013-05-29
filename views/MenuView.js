@@ -12,8 +12,8 @@ import menus.views.components.DialogBackgroundView as DialogBackgroundView;
 
 exports = Class(DialogBackgroundView, function (supr) {
 	this.init = function (opts) {
-		this.baseWidth = opts.baseWidth || GC.app.baseWidth;
-		this.baseHeight = opts.baseHeight || GC.app.baseHeight;
+		this.baseWidth = opts.baseWidth || (opts.superview ? opts.superview.style.width : undefined) || GC.app.baseWidth;
+		this.baseHeight = opts.baseHeight || (opts.superview ? opts.superview.style.height : undefined) || GC.app.baseHeight;
 
 		var width = opts.width || this.baseWidth - 80;
 
