@@ -6,11 +6,14 @@ import menus.constants.menuConstants as menuConstants;
 
 exports = Class(View, function (supr) {
 	this.init = function (opts) {
+		this.baseWidth = opts.baseWidth || GC.app.baseWidth || (opts.superview ? opts.superview.style.width : undefined);
+		this.baseHeight = opts.baseHeight || GC.app.baseHeight || (opts.superview ? opts.superview.style.height : undefined);
+
 		// Don't merge but overwrite...
 		opts.x = 0;
 		opts.y = 0;
-		opts.width = GC.app.baseWidth;
-		opts.height = GC.app.baseHeight;
+		opts.width = this.baseWidth;
+		opts.height = this.baseHeight;
 		opts.visible = false;
 
 		supr(this, 'init', [opts]);
@@ -23,8 +26,8 @@ exports = Class(View, function (supr) {
 				superview: this,
 				x: 0,
 				y: 0,
-				width: GC.app.baseWidth,
-				height: GC.app.baseHeight,
+				width: this.baseWidth,
+				height: this.baseHeight,
 				backgroundColor: 'rbga(0, 0, 0)'
 			});
 		}
@@ -34,8 +37,8 @@ exports = Class(View, function (supr) {
 			superview: this,
 			x: 0,
 			y: 0,
-			width: GC.app.baseWidth,
-			height: GC.app.baseHeight
+			width: this.baseWidth,
+			height: this.baseHeight
 		});
 	};
 
@@ -52,7 +55,7 @@ exports = Class(View, function (supr) {
 
 		switch (this._opts.showTransitionMethod || menuConstants.DIALOG.SHOW_TRANSITION_METHOD) {
 			case menuConstants.transitionMethod.SLIDE:
-				dialogContainerStyle.x = -GC.app.baseWidth;
+				dialogContainerStyle.x = -this.baseWidth;
 				dialogContainerStyle.r = 0;
 				dialogContainerStyle.opacity = 1;
 				dialogContainerStyle.scale = 1;
@@ -116,7 +119,7 @@ exports = Class(View, function (supr) {
 
 		switch (this._opts.hideTransitionMethod || menuConstants.DIALOG.HIDE_TRANSITION_METHOD) {
 			case menuConstants.transitionMethod.SLIDE:
-				a = animate(dialogContainerView).then({x: GC.app.baseWidth}, time);
+				a = animate(dialogContainerView).then({x: this.baseWidth}, time);
 				break;
 
 			case menuConstants.transitionMethod.SCALE:
