@@ -17,7 +17,11 @@ exports = Class(DialogBackgroundView, function (supr) {
 
 		supr(this, 'init', arguments);
 
+		var buttons = opts.buttons || [];
+		var buttonStyle = menuConstants.DIALOG.BUTTON;
 		var contentStyle = menuConstants.DIALOG.CONTENT;
+		var contentHeight = height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM
+			- (buttons.length ? buttonStyle.HEIGHT : 0);
 
 		// The dialog containing the actual content...
 		this._dialogView = new BoxDialogView({
@@ -38,7 +42,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 			x: contentStyle.MARGIN_LEFT,
 			y: contentStyle.MARGIN_TOP,
 			width: this._dialogView.style.width - contentStyle.MARGIN_LEFT - contentStyle.MARGIN_RIGHT,
-			height: height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM
+			height: contentHeight
 		});
 
 		this._dialogView.content = new BoxBorderView({
@@ -47,12 +51,9 @@ exports = Class(DialogBackgroundView, function (supr) {
 			y: contentStyle.MARGIN_TOP,
 			image: contentStyle.BACKGROUND,
 			width: this._dialogView.style.width - contentStyle.MARGIN_LEFT - contentStyle.MARGIN_RIGHT,
-			height: height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM,
+			height: contentHeight,
 			zIndex: -1
 		});
-
-		var buttons = opts.buttons || [];
-		var buttonStyle = menuConstants.DIALOG.BUTTON;
 
 		this.buttons = [];
 
