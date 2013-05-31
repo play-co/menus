@@ -12,17 +12,33 @@ exports = Class(BoxBorderView, function (supr) {
 		supr(this, 'init', [opts]);
 
 		var titleStyle = menuConstants.TITLE;
+		var closeStyle = menuConstants.DIALOG.CLOSE;
+		var backStyle = menuConstants.DIALOG.BACK;
+		var boxWidth = this.style.width - 72;
+		var textWidth = boxWidth;
+		var textX = 0;
+		
+		if (opts.backCB) {
+			var backDiff = backStyle.MARGIN_LEFT + backStyle.WIDTH;
+			textX += backDiff;
+			textWidth -= backDiff;
+		}
+		if (opts.closeCB) {
+			textWidth -= closeStyle.MARGIN_RIGHT + closeStyle.WIDTH;
+		}
 
 		this.title = new BoxBorderView({
 			superview: this,
 			x: 34,
 			y: 34,
-			width: this.style.width - 72,
+			width: boxWidth,
 			height: 60,
 			image: titleStyle.BACKGROUND,
 			fontFamily: titleStyle.FONT_FAMILY,
 			fontSize: titleStyle.FONT_SIZE,
 			text: opts.title,
+			textX: textX,
+			textWidth: textWidth,
 			textColor: titleStyle.COLOR,
 			textOutline: titleStyle.STROKE_COLOR,
 			textPadding: titleStyle.PADDING,
@@ -30,7 +46,6 @@ exports = Class(BoxBorderView, function (supr) {
 		});
 
 		if (opts.backCB) {
-			var backStyle = menuConstants.DIALOG.BACK;
 			var backImageStyle = backStyle.IMAGE;
 			new ButtonView({
 				superview: this.title,
@@ -53,11 +68,10 @@ exports = Class(BoxBorderView, function (supr) {
 			});
 		}
 		if (opts.closeCB) {
-			var closeStyle = menuConstants.DIALOG.CLOSE;
 			var closeImageStyle = closeStyle.IMAGE;
 			new ButtonView({
 				superview: this.title,
-				x: this.title.style.width - closeStyle.MARGIN_RIGHT - closeStyle.WIDTH,
+				x: textX + textWidth,
 				y: closeStyle.MARGIN_TOP,
 				width: closeStyle.WIDTH,
 				height: closeStyle.HEIGHT,
