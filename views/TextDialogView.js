@@ -52,7 +52,8 @@ exports = Class(DialogBackgroundView, function (supr) {
 			image: contentStyle.BACKGROUND,
 			width: this._dialogView.style.width - contentStyle.MARGIN_LEFT - contentStyle.MARGIN_RIGHT,
 			height: contentHeight,
-			zIndex: -1
+			zIndex: -1,
+			clip: true
 		});
 
 		this.buttons = [];
