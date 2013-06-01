@@ -20,8 +20,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 		var buttons = opts.buttons || [];
 		var buttonStyle = menuConstants.DIALOG.BUTTON;
 		var contentStyle = menuConstants.DIALOG.CONTENT;
-		var contentHeight = height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM
-			- (buttons.length ? buttonStyle.HEIGHT : 0);
+		var contentHeight = height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM - (buttons.length ? buttonStyle.HEIGHT : 0);
 
 		// The dialog containing the actual content...
 		this._dialogView = new BoxDialogView({

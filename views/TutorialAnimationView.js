@@ -66,9 +66,10 @@ exports = Class(DialogBackgroundView, function (supr) {
 
 		var contentStyle = menuConstants.DIALOG.CONTENT;
 		var tutorialStyle = menuConstants.DIALOG.TUTORIAL;
+		var buttonStyle = menuConstants.DIALOG.BUTTON;
 		var horizontalMargin = tutorialStyle.MARGIN_LEFT + tutorialStyle.MARGIN_RIGHT;
 		var size = this._spriteView.getSize();
-		var availableHeight = this._dialogView.style.height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM;
+		var availableHeight = this._dialogView.style.height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM - buttonStyle.HEIGHT;
 		var availableWidth = availableHeight * size.width / size.height - horizontalMargin;
 
 		if (availableWidth > this._dialogView.title.style.width) {

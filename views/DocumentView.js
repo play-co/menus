@@ -22,6 +22,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 		supr(this, 'init', arguments);
 
 		var contentStyle = menuConstants.DIALOG.CONTENT;
+		var buttonStyle = menuConstants.DIALOG.BUTTON;
 
 		// The dialog containing the actual content...
 		this._dialogView = new BoxDialogView({
@@ -45,12 +46,13 @@ exports = Class(DialogBackgroundView, function (supr) {
 		this._marginBottom = showItems ? 0 : menuConstants.DIALOG.BUTTON.HEIGHT;
 
 		var contentWidth = this._dialogView.style.width - contentStyle.MARGIN_LEFT - contentStyle.MARGIN_RIGHT;
+		var contentHeight = height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM - (showItems ? buttonStyle.HEIGHT : 0);
 		this._dialogView.content = new View({
 			superview: this._dialogView,
 			x: contentStyle.MARGIN_LEFT + 1,
 			y: contentStyle.MARGIN_TOP + 1,
 			width: contentWidth - 2,
-			height: height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM - 2 + this._marginBottom,
+			height: contentHeight,
 			backgroundColor: '#FFFFFF'
 		});
 
@@ -64,7 +66,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 			x: contentStyle.MARGIN_LEFT,
 			y: contentStyle.MARGIN_TOP,
 			width: this._dialogView.style.width - contentStyle.MARGIN_LEFT - contentStyle.MARGIN_RIGHT,
-			height: height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM + this._marginBottom,
+			height: contentHeight,
 			image: menuConstants.DIALOG.CONTENT_BORDER,
 			scaleMethod: '9slice',
 			sourceSlices: {
