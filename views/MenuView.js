@@ -12,9 +12,11 @@ import menus.views.components.DialogBackgroundView as DialogBackgroundView;
 
 exports = Class(DialogBackgroundView, function (supr) {
 	this.init = function (opts) {
+		// Do not move this line! the superclass changes opts.width!!!!!
+		var width = opts.width || this.baseWidth - 80;
+
 		supr(this, 'init', arguments);
 
-		var width = opts.width || this.baseWidth - 80;
 		var height = 140;
 		var items = opts.items;
 		for (var i = 0; i < items.length; i++) {
