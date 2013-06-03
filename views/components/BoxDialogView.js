@@ -15,17 +15,8 @@ exports = Class(BoxBorderView, function (supr) {
 		var closeStyle = menuConstants.DIALOG.CLOSE;
 		var backStyle = menuConstants.DIALOG.BACK;
 		var boxWidth = this.style.width - 72;
-		var textWidth = boxWidth;
-		var textX = 0;
-		
-		if (opts.backCB) {
-			var backDiff = backStyle.MARGIN_LEFT + backStyle.WIDTH;
-			textX += backDiff;
-			textWidth -= backDiff;
-		}
-		if (opts.closeCB) {
-			textWidth -= closeStyle.MARGIN_RIGHT + closeStyle.WIDTH;
-		}
+		var textX = backStyle.MARGIN_LEFT + backStyle.WIDTH;
+		var textWidth = boxWidth - textX - closeStyle.MARGIN_RIGHT - closeStyle.WIDTH;
 
 		this.title = new BoxBorderView({
 			superview: this,

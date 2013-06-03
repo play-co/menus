@@ -20,9 +20,9 @@ exports = Class(ImageScaleView, function (supr) {
 		if ('text' in opts) {
 			this.text = new TextView({
 				superview: this,
-				x: 0,
+				x: opts.textX || 0,
 				y: 0,
-				width: this.style.width,
+				width: opts.textWidth || this.style.width,
 				height: this.style.height,
 				text: opts.text || '',
 				size: opts.fontSize || 30,
