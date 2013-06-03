@@ -1,3 +1,4 @@
+import device;
 import animate;
 
 import ui.View as View;
@@ -235,6 +236,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 					autoFontSize: false,
 					autoSize: true,
 					wrap: true,
+					buffer: false,
 					fontFamily: elementStyle.fontFamily || 'Verdana',
 					size: element.size || page.size || elementStyle.size || 26,
 					color: element.color || page.color || elementStyle.color || '#000000',
@@ -245,7 +247,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 
 			elementView.element = element;
 			elementView.elementStyle = elementStyle;
-			elementView.style.opacity = 0;
+			elementView.style.opacity = GLOBAL.NATIVE && !device.simulatingMobileNative ? 1 : 0;
 			pageContent.content.push(elementView);
 		}
 
