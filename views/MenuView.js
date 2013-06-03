@@ -14,6 +14,8 @@ exports = Class(DialogBackgroundView, function (supr) {
 	this.init = function (opts) {
 		supr(this, 'init', arguments);
 
+		this.canHandleEvents(true);
+
 		var width = this.baseWidth - 80;
 		var height = 140;
 		var items = opts.items;
@@ -108,8 +110,12 @@ exports = Class(DialogBackgroundView, function (supr) {
 				});
 
 				itemView.onInputSelect = (function (item) {
-					return function () {
+					return function (evt) {
+						evt.cancel();
+						itemView.canHandleEvents(false);
+
 						var cb = function () {
+								itemView.canHandleEvents(true);
 								if (typeof item.action === 'function') {
 									item.action();
 								} else {
