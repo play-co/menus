@@ -76,7 +76,6 @@ exports = Class(DialogBackgroundView, function (supr) {
 			}
 		}).canHandleEvents(false);
 
-		this._renderCount = 0;
 		this._currentPage = 0;
 	};
 
