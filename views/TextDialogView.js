@@ -12,15 +12,14 @@ import menus.views.components.DialogBackgroundView as DialogBackgroundView;
 exports = Class(DialogBackgroundView, function (supr) {
 	this.init = function (opts) {
 		// Get the height from opts before the super init is executed!
-		var width = opts.width || GC.app.baseWidth - 80;
-		var height = opts.height || 400;
+		var width = this._width = opts.width || GC.app.baseWidth - 80;
+		var height = this._height = opts.height || 400;
 
 		supr(this, 'init', arguments);
 
 		var buttons = opts.buttons || [];
-		var buttonStyle = menuConstants.DIALOG.BUTTON;
 		var contentStyle = menuConstants.DIALOG.CONTENT;
-		var contentHeight = height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM - (buttons.length ? buttonStyle.HEIGHT : 0);
+		var contentHeight = this._getContentHeight(buttons.length);
 
 		// The dialog containing the actual content...
 		this._dialogView = new BoxDialogView({
@@ -55,11 +54,34 @@ exports = Class(DialogBackgroundView, function (supr) {
 			clip: true
 		});
 
+		this.setButtons(opts.buttons);
+	};
+
+	this._getContentHeight = function (withButtons) {
+		var cStyle = menuConstants.DIALOG.CONTENT;
+		return this._height - cStyle.MARGIN_TOP - cStyle.MARGIN_BOTTOM -
+			(withButtons ? menuConstants.DIALOG.BUTTON.HEIGHT : 0);
+	};
+
+	this.setButtons = function (buttons) {
+		if (this.buttons && this.buttons.length) {
+			this.buttons.forEach(function(button) {
+				button.removeFromSuperview();
+			});
+		}
+
+		buttons = buttons || [];
+		var contentHeight = this._getContentHeight(buttons.length);
+		this._dialogView.text.updateOpts({ height: contentHeight });
+		this._dialogView.content.updateOpts({ height: contentHeight });
 		this.buttons = [];
 
 		// Calculate the total width of the buttons...
+		var buttonStyle = menuConstants.DIALOG.BUTTON;
 		var width = -buttonStyle.MARGIN_RIGHT;
+		var evenWidth = this._dialogView.content.style.width / buttons.length;
 		for (var i = 0; i < buttons.length; i++) {
+			buttons[i].width = buttons[i].width || evenWidth;
 			width += buttons[i].width + buttonStyle.MARGIN_RIGHT;
 		}
 		var x = (this._dialogView.style.width - width) * 0.5;
@@ -68,10 +90,10 @@ exports = Class(DialogBackgroundView, function (supr) {
 			bind(
 				this,
 				function (button) {
-					new ButtonView({
+					this.buttons.push(new ButtonView({
 						superview: this._dialogView,
 						x: x,
-						y: height - buttonStyle.HEIGHT - buttonStyle.MARGIN_BOTTOM,
+						y: this._height - buttonStyle.HEIGHT - buttonStyle.MARGIN_BOTTOM,
 						width: button.width,
 						height: buttonStyle.HEIGHT,
 						title: button.title,
@@ -79,7 +101,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 						on: {
 							up: bind(this, 'hide', button.cb)
 						}
-					});
+					}));
 					x += button.width + buttonStyle.MARGIN_RIGHT;
 				}
 			)(buttons[i]);

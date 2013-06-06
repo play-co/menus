@@ -91,7 +91,7 @@ exports = Class(View, function (supr) {
 				break;
 
 			default:
-				dialogContainerStyle.style.x = 0;
+				dialogContainerStyle.x = 0;
 				dialogContainerStyle.scale = 1;
 				break;
 		}
