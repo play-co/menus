@@ -33,7 +33,8 @@ exports = Class(DialogBackgroundView, function (supr) {
 			textPadding: contentStyle.PADDING,
 			text: opts.text || '',
 			title: opts.title,
-			closeCB: bind(this, 'hide', opts.closeCB)
+			backCB: opts.backCB ? bind(this, 'hide', opts.backCB) : false,
+			closeCB: opts.closeCB ? bind(this, 'hide', opts.closeCB) : false
 		});
 		this._dialogView.text.updateOpts({
 			wrap: true,
