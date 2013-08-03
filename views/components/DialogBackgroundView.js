@@ -97,7 +97,7 @@ exports = Class(View, function (supr) {
 		}
 
 		if (a) {
-			cb && a.then(cb, 1);
+			cb && a.then(cb);
 		} else if (cb) {
 			cb();
 		}
@@ -143,7 +143,7 @@ exports = Class(View, function (supr) {
 		}
 
 		if (a) {
-			a = a.then(bind(this, function () { this.style.visible = false}), 1);
+			a = a.then(bind(this, function () { this.style.visible = false}));
 			a.then(
 				bind(
 					this,
@@ -151,8 +151,7 @@ exports = Class(View, function (supr) {
 						cb && cb();
 						this.emit('Hide');
 					}
-				),
-				1
+				)
 			);
 		} else if (cb) {
 			cb();
