@@ -2,6 +2,8 @@ import lib.Enum as Enum;
 
 var constants = {};
 
+constants.DEFAULT_FONT_FAMILY = 'BPReplay';
+
 constants.transitionMethod = Enum(
 	'NONE',
 	'SLIDE',
@@ -68,7 +70,7 @@ constants.DIALOG = {
 	},
 	CONTENT: {
 		BACKGROUND: 'resources/images/ui/item.png',
-		FONT_FAMILY: 'BPReplay',
+		FONT_FAMILY: constants.DEFAULT_FONT_FAMILY,
 		FONT_SIZE: 36,
 		PADDING: [0, 30, 0, 30],
 		MARGIN_LEFT: 35,
@@ -92,7 +94,7 @@ constants.TUTORIAL = {
 };
 
 constants.MENU_TEXT = {
-	FONT_FAMILY: 'BPReplay',
+	FONT_FAMILY: constants.DEFAULT_FONT_FAMILY,
 	FONT_SIZE: 36,
 	PADDING: [0, 0, 0, 0],
 	COLOR: '#000000',
@@ -103,7 +105,7 @@ constants.MENU_TEXT = {
 
 constants.MENU_ITEM = {
 	BACKGROUND: 'resources/images/ui/buttonItem.png',
-	FONT_FAMILY: 'BPReplay',
+	FONT_FAMILY: constants.DEFAULT_FONT_FAMILY,
 	FONT_SIZE: 36,
 	PADDING: [0, 0, 3, 0],
 	MARGIN_LEFT: 30,
@@ -117,7 +119,7 @@ constants.MENU_ITEM = {
 
 constants.TITLE = {
 	BACKGROUND: 'resources/images/ui/title.png',
-	FONT_FAMILY: 'BPReplay',
+	FONT_FAMILY: constants.DEFAULT_FONT_FAMILY,
 	FONT_SIZE: 36,
 	COLOR: 'rgb(250, 227, 190)',
 	STROKE_COLOR: '#000000',
@@ -128,7 +130,7 @@ constants.BUTTONS = {
 	BLUE: {
 		UP: 'resources/images/ui/button1Up.png',
 		DOWN: 'resources/images/ui/button1Down.png',
-		FONT_FAMILY: 'BPReplay',
+		FONT_FAMILY: constants.DEFAULT_FONT_FAMILY,
 		FONT_SIZE: 36,
 		COLOR: 'rgb(255, 255, 255)',
 		STROKE_COLOR: 'rgb(73, 154, 203)',
@@ -137,7 +139,7 @@ constants.BUTTONS = {
 	GREEN: {
 		UP: 'resources/images/ui/button2Up.png',
 		DOWN: 'resources/images/ui/button2Down.png',
-		FONT_FAMILY: 'BPReplay',
+		FONT_FAMILY: constants.DEFAULT_FONT_FAMILY,
 		FONT_SIZE: 36,
 		COLOR: 'rgb(255, 255, 255)',
 		STROKE_COLOR: 'rgb(15, 111, 55)',
@@ -146,7 +148,7 @@ constants.BUTTONS = {
 	RED: {
 		UP: 'resources/images/ui/button3Up.png',
 		DOWN: 'resources/images/ui/button3Down.png',
-		FONT_FAMILY: 'BPReplay',
+		FONT_FAMILY: constants.DEFAULT_FONT_FAMILY,
 		FONT_SIZE: 36,
 		COLOR: 'rgb(255, 255, 255)',
 		STROKE_COLOR: 'rgb(111, 15, 55)',
