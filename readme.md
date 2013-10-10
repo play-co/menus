@@ -219,6 +219,7 @@ Parameters
   + `title {string}` ---The title of the button.
   + `width {number}` ---The horizontal size of the button.
   + `style {string}` ---A string representing the style of the button, the styles are configured in `src.constants.menuConstants`.
+  + `cb {function}` ---A callback to be invoked when the button is pressed, it will be called after the dialog hide animation.
 
 ~~~
 import menus.views.TextDialogView as TextDialogView;
