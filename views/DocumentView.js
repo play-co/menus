@@ -7,7 +7,7 @@ import ui.ImageScaleView as ImageScaleView;
 import ui.ImageView as ImageView;
 import ui.ScrollView as ScrollView;
 
-import menus.constants.menuConstants as menuConstants;
+import menus.styles.style as styles;
 
 import menus.views.components.BoxBorderView as BoxBorderView;
 import menus.views.components.BoxDialogView as BoxDialogView;
@@ -17,19 +17,21 @@ import menus.views.components.DialogBackgroundView as DialogBackgroundView;
 exports = Class(DialogBackgroundView, function (supr) {
 	this.init = function (opts) {
 		// Get the height from opts before the super init is executed!
-		var width = opts.width || GC.app.baseWidth - 80;
-		var height = opts.height || GC.app.baseHeight - 80;
+		var baseWidth = opts.baseWidth || GC.app.base_width || GC.app.baseWidth;
+		var baseHeight = opts.baseHeight || GC.app.base_height || GC.app.baseHeight;
+		var width = opts.width || baseWidth - 80;
+		var height = opts.height || baseHeight - 80;
 
 		supr(this, 'init', arguments);
 
-		var contentStyle = menuConstants.DIALOG.CONTENT;
-		var buttonStyle = menuConstants.DIALOG.BUTTON;
+		var contentStyle = styles.DIALOG.CONTENT;
+		var buttonStyle = styles.DIALOG.BUTTON;
 
 		// The dialog containing the actual content...
 		this._dialogView = new BoxDialogView({
 			superview: this._dialogContainerView,
-			x: (GC.app.baseWidth - width) * 0.5,
-			y: (GC.app.baseHeight - height) * 0.5,
+			x: (baseWidth - width) * 0.5,
+			y: (baseHeight - height) * 0.5,
 			width: width,
 			height: height,
 			fontFamily: contentStyle.FONT_FAMILY,
@@ -44,7 +46,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 		this._dialogView.text.style.visible = false;
 
 		var showItems = this._opts.items && this._opts.pages.length;
-		this._marginBottom = showItems ? 0 : menuConstants.DIALOG.BUTTON.HEIGHT;
+		this._marginBottom = showItems ? 0 : styles.DIALOG.BUTTON.HEIGHT;
 
 		var contentWidth = this._dialogView.style.width - contentStyle.MARGIN_LEFT - contentStyle.MARGIN_RIGHT;
 		var contentHeight = height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM - (showItems ? buttonStyle.HEIGHT : 0);
@@ -68,7 +70,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 			y: contentStyle.MARGIN_TOP,
 			width: this._dialogView.style.width - contentStyle.MARGIN_LEFT - contentStyle.MARGIN_RIGHT,
 			height: contentHeight,
-			image: menuConstants.DIALOG.CONTENT_BORDER,
+			image: styles.DIALOG.CONTENT_BORDER,
 			scaleMethod: '9slice',
 			sourceSlices: {
 				horizontal: {left: 30, center: 10, right: 30},
@@ -81,7 +83,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 
 	this._initItems = function () {
 		var items = this._opts.items;
-		var buttonStyle = menuConstants.DIALOG.BUTTON;
+		var buttonStyle = styles.DIALOG.BUTTON;
 
 		// Calculate the total width of the items...
 		var width = -buttonStyle.MARGIN_RIGHT;
@@ -163,9 +165,9 @@ exports = Class(DialogBackgroundView, function (supr) {
 	};
 
 	this._createPage = function (page) {
-		var contentStyle = menuConstants.DIALOG.CONTENT;
+		var contentStyle = styles.DIALOG.CONTENT;
 		var content = this._dialogView.content;
-		var documentStyle = menuConstants.DIALOG.DOCUMENT;
+		var documentStyle = styles.DIALOG.DOCUMENT;
 
 		var pageContainer = new ImageView({
 				superview: content,
@@ -290,7 +292,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 			return;
 		}
 
-		var documentStyle = menuConstants.DIALOG.DOCUMENT;
+		var documentStyle = styles.DIALOG.DOCUMENT;
 		var page = this._pages[this._currentPage];
 		var y = documentStyle.MARGIN_TOP;
 

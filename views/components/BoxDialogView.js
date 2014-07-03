@@ -1,7 +1,7 @@
 import ui.TextView as TextView;
 import ui.ImageView as ImageView;
 
-import menus.constants.menuConstants as menuConstants;
+import menus.styles.style as styles;
 
 import .ButtonView as ButtonView;
 
@@ -11,9 +11,9 @@ exports = Class(BoxBorderView, function (supr) {
 	this.init = function (opts) {
 		supr(this, 'init', [opts]);
 
-		var titleStyle = menuConstants.TITLE;
-		var closeStyle = menuConstants.DIALOG.CLOSE;
-		var backStyle = menuConstants.DIALOG.BACK;
+		var titleStyle = styles.TITLE;
+		var closeStyle = styles.DIALOG.CLOSE;
+		var backStyle = styles.DIALOG.BACK;
 		var boxWidth = this.style.width - 72;
 		var textX = backStyle.MARGIN_LEFT + backStyle.WIDTH;
 		var textWidth = boxWidth - textX - closeStyle.MARGIN_RIGHT - closeStyle.WIDTH;

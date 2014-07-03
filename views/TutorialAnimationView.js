@@ -4,7 +4,7 @@ import ui.View as View;
 import ui.SpriteView as SpriteView;
 import ui.ImageScaleView as ImageScaleView;
 
-import menus.constants.menuConstants as menuConstants;
+import menus.styles.style as styles;
 
 import menus.views.components.BoxDialogView as BoxDialogView;
 import menus.views.components.ButtonView as ButtonView;
@@ -25,18 +25,20 @@ var TutorialSpriteView = Class(SpriteView, function (supr) {
 exports = Class(DialogBackgroundView, function (supr) {
 	this.init = function (opts) {
 		// Get the height from opts before the super init is executed!
-		var height = opts.height || GC.app.baseHeight * 0.8;
+		var baseWidth = opts.baseWidth || GC.app.base_width || GC.app.baseWidth;
+		var baseHeight = opts.baseHeight || GC.app.base_height || GC.app.baseHeight;
+		var height = opts.height || baseHeight * 0.8;
 
 		supr(this, 'init', arguments);
 
-		var contentStyle = menuConstants.DIALOG.CONTENT;
+		var contentStyle = styles.DIALOG.CONTENT;
 
 		// The dialog containing the actual content...
 		this._dialogView = new BoxDialogView({
 			superview: this._dialogContainerView,
 			x: 40,
-			y: GC.app.baseHeight * 0.5 - height * 0.5,
-			width: GC.app.baseWidth - 80,
+			y: baseHeight * 0.5 - height * 0.5,
+			width: baseWidth - 80,
 			height: height,
 			fontFamily: contentStyle.FONT_FAMILY,
 			fontSize: contentStyle.FONT_SIZE,
@@ -52,7 +54,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 			y: 0,
 			width: 0,
 			height: 0,
-			backgroundColor: opts.backgroundColor || menuConstants.TUTORIAL.BACKGROUND_COLOR || 'rgb(255, 255, 255)'
+			backgroundColor: opts.backgroundColor || styles.TUTORIAL.BACKGROUND_COLOR || 'rgb(255, 255, 255)'
 		});
 		this._spriteView = new TutorialSpriteView({
 			superview: this._dialogView,
@@ -64,9 +66,9 @@ exports = Class(DialogBackgroundView, function (supr) {
 			visible: false
 		});
 
-		var contentStyle = menuConstants.DIALOG.CONTENT;
-		var tutorialStyle = menuConstants.DIALOG.TUTORIAL;
-		var buttonStyle = menuConstants.DIALOG.BUTTON;
+		var contentStyle = styles.DIALOG.CONTENT;
+		var tutorialStyle = styles.DIALOG.TUTORIAL;
+		var buttonStyle = styles.DIALOG.BUTTON;
 		var horizontalMargin = tutorialStyle.MARGIN_LEFT + tutorialStyle.MARGIN_RIGHT;
 		var size = this._spriteView.getSize();
 		var availableHeight = this._dialogView.style.height - contentStyle.MARGIN_TOP - contentStyle.MARGIN_BOTTOM - buttonStyle.HEIGHT;
@@ -93,7 +95,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 			y: contentStyle.MARGIN_TOP,
 			width: availableWidth,
 			height: availableHeight,
-			image: menuConstants.DIALOG.CONTENT_BORDER,
+			image: styles.DIALOG.CONTENT_BORDER,
 			scaleMethod: '9slice',
 			sourceSlices: {
 				horizontal: {left: 30, center: 10, right: 30},
@@ -101,7 +103,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 			}
 		});
 
-		var buttonStyle = menuConstants.DIALOG.BUTTON;
+		var buttonStyle = styles.DIALOG.BUTTON;
 
 		new ButtonView({
 			superview: this._dialogView,

@@ -1,11 +1,11 @@
 import ui.widget.ButtonView as ButtonView;
 
-import menus.constants.menuConstants as menuConstants;
+import menus.styles.style as styles;
 
 exports = Class(ButtonView, function (supr) {
 	this.init = function (opts) {
 		var style = opts.style || 'GREEN';
-		var buttonStyle = menuConstants.BUTTONS[style]; 
+		var buttonStyle = styles.BUTTONS[style];
 
 		opts = merge(
 			opts,
@@ -15,8 +15,8 @@ exports = Class(ButtonView, function (supr) {
 					up: buttonStyle.UP
 				},
 				scaleMethod: '9slice',
-				sourceSlices: menuConstants.BUTTON_SLICES.SOURCE_SLICES,
-				destSlices: menuConstants.BUTTON_SLICES.DEST_SLICES,
+				sourceSlices: styles.BUTTON_SLICES.SOURCE_SLICES,
+				destSlices: styles.BUTTON_SLICES.DEST_SLICES,
 				text: {
 					fontFamily: buttonStyle.FONT_FAMILY,
 					size: buttonStyle.FONT_SIZE,

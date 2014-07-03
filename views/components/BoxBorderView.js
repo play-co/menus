@@ -1,17 +1,18 @@
 import ui.ImageScaleView as ImageScaleView;
 import ui.TextView as TextView;
 
-import menus.constants.menuConstants as menuConstants;
+import menus.styles.style as styles;
 
 exports = Class(ImageScaleView, function (supr) {
 	this.init = function (opts) {
+
 		opts = merge(
 			opts,
 			{
- 				image: menuConstants.DIALOG.BACKGROUND,
+ 				image: styles.DIALOG.BACKGROUND,
 				scaleMethod: '9slice',
-				sourceSlices: menuConstants.BOX_SLICES.SOURCE_SLICES,
-				destSlices: menuConstants.BOX_SLICES.DEST_SLICES
+				sourceSlices: styles.BOX_SLICES.SOURCE_SLICES,
+				destSlices: styles.BOX_SLICES.DEST_SLICES
 			}
 		);
 
