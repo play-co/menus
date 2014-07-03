@@ -136,9 +136,9 @@ constants.BUTTONS = {
   }
 };
 
-if (CONFIG.ui && CONFIG.ui.menus) {
-  style = JSON.parse(CACHE[CONFIG.ui.menus + '.js']);
+if (CONFIG.browser && CONFIG.browser.menus) {
+  style = JSON.parse(CACHE[CONFIG.browser.menus + '.json']);
 }
 
-exports = merge(customStyle, constants);
+exports = merge(style, constants);
 
