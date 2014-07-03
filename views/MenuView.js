@@ -4,7 +4,7 @@ import ui.View as View;
 import ui.TextView as TextView;
 import ui.ImageView as ImageView;
 
-import menus.constants.menuConstants as menuConstants;
+import menus.styles.style as styles;
 
 import menus.views.components.BoxBorderView as BoxBorderView;
 import menus.views.components.BoxDialogView as BoxDialogView;
@@ -45,8 +45,8 @@ exports = Class(DialogBackgroundView, function (supr) {
 
 		this._items = [];
 
-		var itemStyle = menuConstants.MENU_ITEM;
-		var textStyle = menuConstants.MENU_TEXT;
+		var itemStyle = styles.MENU_ITEM;
+		var textStyle = styles.MENU_TEXT;
 		var menu = this;
 		var y = 105;
 

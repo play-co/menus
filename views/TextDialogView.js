@@ -2,7 +2,7 @@ import animate;
 
 import ui.View as View;
 
-import menus.constants.menuConstants as menuConstants;
+import menus.styles.style as styles;
 
 import menus.views.components.BoxBorderView as BoxBorderView;
 import menus.views.components.BoxDialogView as BoxDialogView;
@@ -12,20 +12,22 @@ import menus.views.components.DialogBackgroundView as DialogBackgroundView;
 exports = Class(DialogBackgroundView, function (supr) {
 	this.init = function (opts) {
 		// Get the height from opts before the super init is executed!
-		var width = this._width = opts.width || GC.app.baseWidth - 80;
+		var baseWidth = opts.baseWidth || GC.app.base_width || GC.app.baseWidth;
+		var baseHeight = opts.baseHeight || GC.app.base_height || GC.app.baseHeight;
+		var width = this._width = opts.width || baseWidth - 80;
 		var height = this._height = opts.height || 400;
 
 		supr(this, 'init', arguments);
 
 		var buttons = opts.buttons || [];
-		var contentStyle = menuConstants.DIALOG.CONTENT;
+		var contentStyle = styles.DIALOG.CONTENT;
 		var contentHeight = this._getContentHeight(buttons.length);
 
 		// The dialog containing the actual content...
 		this._dialogView = new BoxDialogView({
 			superview: this._dialogContainerView,
-			x: (GC.app.baseWidth - width) * 0.5,
-			y: (GC.app.baseHeight - height) * 0.5,
+			x: (baseWidth - width) * 0.5,
+			y: (baseHeight - height) * 0.5,
 			width: width,
 			height: height,
 			fontFamily: contentStyle.FONT_FAMILY,
@@ -59,9 +61,9 @@ exports = Class(DialogBackgroundView, function (supr) {
 	};
 
 	this._getContentHeight = function (withButtons) {
-		var cStyle = menuConstants.DIALOG.CONTENT;
+		var cStyle = styles.DIALOG.CONTENT;
 		return this._height - cStyle.MARGIN_TOP - cStyle.MARGIN_BOTTOM -
-			(withButtons ? menuConstants.DIALOG.BUTTON.HEIGHT : 0);
+			(withButtons ? styles.DIALOG.BUTTON.HEIGHT : 0);
 	};
 
 	this.setButtons = function (buttons) {
@@ -78,7 +80,7 @@ exports = Class(DialogBackgroundView, function (supr) {
 		this.buttons = [];
 
 		// Calculate the total width of the buttons...
-		var buttonStyle = menuConstants.DIALOG.BUTTON;
+		var buttonStyle = styles.DIALOG.BUTTON;
 		var width = -buttonStyle.MARGIN_RIGHT;
 		var evenWidth = this._dialogView.content.style.width / buttons.length;
 		for (var i = 0; i < buttons.length; i++) {
