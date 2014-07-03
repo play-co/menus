@@ -123,12 +123,12 @@ All element which make up the menus and dialogs are based on 9-slice images.
 
 Basic styles are defined in `styles/style.js`
 
-If you want to customize more add `ui/menus` field to your manifest.json
+If you want to customize more add `browser/menus` field to your manifest.json
   `Make sure path points to a valid json file`
 
 ~~~
   ...,
-  "ui": {
+  "browser": {
     "menus": "path/to/your/styles"
   },
   ...
