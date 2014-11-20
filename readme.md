@@ -6,10 +6,12 @@ This repository provides a set of classes to handle the basic menus.
 The menus can be displayed in game or on top of a dedicated menu
 background, the demo uses a simple gradient as a background.
 
+[View the Live Demo](http://storage.googleapis.com/devkit-example-games/menu/index.html)
+
 ## Modals
 
 A modal is a menu which is shown on top of another view, if a menu
-is shown as a model then the user is required to take action. Usually 
+is shown as a model then the user is required to take action. Usually
 the backgound is darkened to signify that the only available options
 are on the active modal.
 
@@ -22,7 +24,7 @@ On the title bar there can be a back button on the left side or
 a close button on the right side.
 
 The close button is usually displayed when the menus is shown as
-a modal, the back button is usually used to navigate through a menu 
+a modal, the back button is usually used to navigate through a menu
 tree.
 
 Dialogs -like confirm or alert- have one or more buttons on the bottom
@@ -342,21 +344,21 @@ If the `text` property is set:
 If the `image` property is set:
  + `image {string}` ---The location of the image.
  + `align {string}` ---Optional, the alignment for the image.
- + `width {number} = 50` ---Optional, the width of the image. 
+ + `width {number} = 50` ---Optional, the width of the image.
  + `height {number} = 50` ---Optional, the height of the image.
  + `backgroundColor {string}` ---Optional, the background color of the image.
 
 If the `view` property is set:
  + `view {view}` ---Has to be `true` to use item as view.
  + `align {string}` ---Optional, the alignment for the image.
- + `width {number} = 50` ---Optional, the width of the image. 
+ + `width {number} = 50` ---Optional, the width of the image.
  + `height {number} = 50` ---Optional, the height of the image.
  + `backgroundColor {string}` ---Optional, the background color of the view.
  + `children {array}` ---Optional, an array of images to with the following -recursive- format:
   + `image {string}` ---The location of the image.
   + `x {number} = 0` ---Optional, the x-position relative to the parent view.
   + `y {number} = 0` ---Optional, the y-position relative to the parent view.
-  + `width {number} = 50` ---Optional, the width of the image. 
+  + `width {number} = 50` ---Optional, the width of the image.
   + `height {number} = 50` ---Optional, the height of the image.
   + `backgroundColor {string}` ---Optional, the background color of the image.
   + `children {array}` ---Optional, an array of images.
