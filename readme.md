@@ -11,7 +11,7 @@ background, the demo uses a simple gradient as a background.
 ## Modals
 
 A modal is a menu which is shown on top of another view, if a menu
-is shown as a model then the user is required to take action. Usually
+is shown as a modal then the user is required to take action. Usually
 the backgound is darkened to signify that the only available options
 are on the active modal.
 
@@ -32,7 +32,7 @@ of the dialog.
 
 Menus have a list of options. The standard behaviour is to hide
 the menu when a menu option is clicked however it's possible to
-overrule this bahaviour and let the menu persist when an option
+overrule this behaviour and let the menu persist when an option
 is selected. This could be used for example to let the user select
 a background which could be displayed behind the menu when an
 option is selected.
